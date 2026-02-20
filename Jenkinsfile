@@ -6,14 +6,9 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/ramyadharshinim737-cloud/my-web-app.git'
             }
         }
-        stage('Fix Docker Permission') {
-            steps {
-                // Jenkins container kulla irundhe socket permission-ah mathurom
-                sh 'sudo chmod 666 /var/run/docker.sock || true'
-            }
-        }
         stage('Build Image') {
             steps {
+                // Ippo permission denied error varaadhu
                 sh 'docker build -t simple-frontend-app .'
             }
         }
